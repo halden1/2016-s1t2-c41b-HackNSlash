@@ -26,7 +26,7 @@ GameObject:
   serializedVersion: 4
   m_Component:
   - 4: {fileID: 401696}
-  - 114: {fileID: 11471416}
+  - 114: {fileID: 11452048}
   m_Layer: 0
   m_Name: Player
   m_TagString: Player
@@ -41,7 +41,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 121672}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalPosition: {x: 1.4110185, y: -0.00000031634366, z: 1.8128464}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 445302}
@@ -69,7 +69,7 @@ MeshRenderer:
   m_CastShadows: 1
   m_ReceiveShadows: 1
   m_Materials:
-  - {fileID: 2100000, guid: fa9af0e51c2fefa4aabdfd7cdbd28309, type: 2}
+  - {fileID: 2100000, guid: dce1e22f5e6c6c04c9a563642c746362, type: 2}
   m_SubsetIndices: 
   m_StaticBatchRoot: {fileID: 0}
   m_UseLightProbes: 1
@@ -92,7 +92,7 @@ MeshFilter:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 111934}
   m_Mesh: {fileID: 10208, guid: 0000000000000000e000000000000000, type: 0}
---- !u!114 &11471416
+--- !u!114 &11452048
 MonoBehaviour:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
@@ -100,16 +100,16 @@ MonoBehaviour:
   m_GameObject: {fileID: 121672}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 0c720f91c79405e43aa56726997e7afa, type: 3}
+  m_Script: {fileID: 11500000, guid: 3904875d57317b847a295323e154cf8d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  moveSpeed: 4
+  moveSpeed: 0
   direction: {x: 0, y: 0, z: 0}
   moveDirection: {x: 0, y: 0, z: 0}
-  Left: 276
-  Right: 275
-  Down: 274
-  Up: 273
+  Left: 0
+  Right: 0
+  Down: 0
+  Up: 0
 --- !u!136 &13656400
 CapsuleCollider:
   m_ObjectHideFlags: 1
