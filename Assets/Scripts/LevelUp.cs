@@ -5,6 +5,11 @@ public class LevelUp : MonoBehaviour {
 
     #region Public Variables
     public string playerStatsTag = "Player"; // the tag of the object that hold the player stats scripts
+    
+    public float healthPerLevel = 0;
+    public int attackPerLevel = 1;
+    public int defencePerLevel = 0;
+    public float speedPerLevel = 0;
     #endregion
 
 
@@ -16,6 +21,7 @@ public class LevelUp : MonoBehaviour {
 
     #endregion
     void Start () {
+        //get exp and level from player stats 
         currentLevel = GameObject.FindGameObjectWithTag(playerStatsTag).GetComponent<PlayerStats>().getLevel();
         currentExp = GameObject.FindGameObjectWithTag(playerStatsTag).GetComponent<PlayerStats>().getExp();
     }
@@ -28,7 +34,10 @@ public class LevelUp : MonoBehaviour {
             expToLevelUp += expToLevelUp;//exp to level up doubles each level
 
             GameObject.FindGameObjectWithTag(playerStatsTag).GetComponent<PlayerStats>().addLevel(1);//save these to the player stat class
-            GameObject.FindGameObjectWithTag(playerStatsTag).GetComponent<PlayerStats>().addAttack(5);
+            GameObject.FindGameObjectWithTag(playerStatsTag).GetComponent<PlayerStats>().addHealth(healthPerLevel);
+            GameObject.FindGameObjectWithTag(playerStatsTag).GetComponent<PlayerStats>().addAttack(attackPerLevel);
+            GameObject.FindGameObjectWithTag(playerStatsTag).GetComponent<PlayerStats>().addDefence(defencePerLevel);
+            GameObject.FindGameObjectWithTag(playerStatsTag).GetComponent<PlayerStats>().addSpeed(speedPerLevel);
             GameObject.FindGameObjectWithTag(playerStatsTag).GetComponent<PlayerStats>().addExp(currentExp - GameObject.FindGameObjectWithTag(playerStatsTag).GetComponent<PlayerStats>().getExp());
         }
 	}
