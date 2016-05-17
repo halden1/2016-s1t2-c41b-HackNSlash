@@ -11,12 +11,12 @@ public class PlayerStats : MonoBehaviour {
 
     #region Private Variables
 
-    private int level;
-    private int exp;
-    private float health;
-    private int attack;
-    private int defence;
-    private float speed;
+    private int level = 0;
+    private int exp = 0;
+    private float health = 0;
+    private int attack = 0;
+    private int defence = 0;
+    private float speed = 0;
 
     #endregion
 
