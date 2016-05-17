@@ -30,5 +30,6 @@ public class PlayerMovement : MonoBehaviour {
         transform.position += moveDirection; //Apply movement.
 
         
+        
     }
 }
