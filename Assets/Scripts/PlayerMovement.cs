@@ -28,5 +28,7 @@ public class PlayerMovement : MonoBehaviour {
         direction = Vector3.Normalize(new Vector3(hori,0,vert));
         moveDirection = direction * moveSpeed * Time.deltaTime; //Smooth Movement.
         transform.position += moveDirection; //Apply movement.
+
+        
     }
 }
