@@ -3,30 +3,47 @@ using System.Collections;
 using System;
 
 public class PlayerMovement : MonoBehaviour {
+
+    [SerializeField]
+    private float moveSpeed; //How fast to move.
+    [SerializeField]
+    private KeyCode Left; //Key to move left.
+    [SerializeField]
+    private KeyCode Right; //Key to move right.
+    [SerializeField]
+    private KeyCode Down; //Key to move down.
+    [SerializeField]
+    private KeyCode Up; //Key to move up.
+
+
+    private Vector3 direction; //Direction.
+    private Vector3 moveDirection; //Direction * Movespeed.
+
+
+    public float minX = -360.0f;
+    public float maxX = 360.0f;
+
+    public float sensX = 100.0f;
+
+    float rotationX = 0.0f;
     
-    public float moveSpeed; //How fast to move.
-    public Vector3 direction; //Direction.
-    public Vector3 moveDirection; //Direction * Movespeed.
-    public KeyCode Left; //Key to move left.
-    public KeyCode Right; //Key to move right.
-    public KeyCode Down; //Key to move down.
-    public KeyCode Up; //Key to move up.
 
-    void Update () {
+    void Update() {
         PlayerInput();
-	}
 
-    private void PlayerInput() {
-        int hori = 0; //horizontal
-        int vert = 0; //vertical
-        if (Input.GetKey(Left)) { hori -= 1; }
-        if (Input.GetKey(Right)) { hori += 1; }
-        if (Input.GetKey(Down)) { vert -= 1; }
-        if (Input.GetKey(Up)) { vert += 1; }
+        rotationX += Input.GetAxis("Mouse X") * sensX * Time.deltaTime;
+        transform.localEulerAngles = new Vector3(0, rotationX, 0);
+    }
 
-        //Get a direction by finding the normalized vector3 based on the current horizontal and vertical.
-        direction = Vector3.Normalize(new Vector3(hori,0,vert));
+    void PlayerInput() {
+        direction = new Vector3(0, 0, 0);
+        if (Input.GetKey(Left)) { direction -= transform.right; }
+        if (Input.GetKey(Right)) { direction += transform.right; }
+        if (Input.GetKey(Down)) { direction -= transform.forward; }
+        if (Input.GetKey(Up)) { direction += transform.forward; }
+
         moveDirection = direction * moveSpeed * Time.deltaTime; //Smooth Movement.
         transform.position += moveDirection; //Apply movement.
+
     }
 }
