@@ -6,12 +6,13 @@ public class BoomerangProjectile : MonoBehaviour
     #region Public Variables
     public string enemyTag = "";
     public string playerTag = "";
+    public GameObject enemy;
     #endregion
     #region Private Variables
     private bool reachedTarget = false;//the number of boomerangs the plater has
     private Vector3 target;
     private GameObject player;
-    private float damage = 5;
+    private int damage = 5;
     private float speed = 5;
 
     #endregion
@@ -29,12 +30,12 @@ public class BoomerangProjectile : MonoBehaviour
 
     }
 
-    public void setup(Vector3 _target, GameObject _player, float _damage, float _speed)
+    public void setup(Vector3 _target, GameObject _player, int _damage, float _speed)
     {
         target = _target;
         player = _player;
         //speed = _speed;
-        damage = _damage;
+        //damage = _damage;
     }
     private void boomerangMovement()//the initial kick to launch the boomerang
     {
@@ -48,14 +49,26 @@ public class BoomerangProjectile : MonoBehaviour
 
     private void OnTriggerEnter(Collider coll)
     {
-
-        if (coll.gameObject.tag != playerTag && coll.gameObject.tag != "Return")
+        if (coll.gameObject.tag == enemyTag)
         {
+            enemy = coll.gameObject.transform.parent.gameObject;
+            print(damage);
+            EnemyStats enemyHealth = enemy.GetComponent<EnemyStats>();
+            if (reachedTarget)
+            {
+                enemyHealth.Health = enemyHealth.Health - damage/2;
+            }
+            else
+            {
+                enemyHealth.Health = enemyHealth.Health - damage;
+            }
+
+
             reachedTarget = true;
+
         }
 
-
-        if (coll.gameObject.tag == enemyTag)
+        if (coll.gameObject.tag != playerTag && coll.gameObject.tag != "Return")
         {
             reachedTarget = true;
         }

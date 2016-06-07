@@ -28,7 +28,7 @@ GameObject:
   - 23: {fileID: 2372164}
   m_Layer: 0
   m_Name: EnemyMesh
-  m_TagString: Untagged
+  m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -111,6 +111,7 @@ GameObject:
   - 4: {fileID: 437792}
   - 114: {fileID: 11436884}
   - 195: {fileID: 19570294}
+  - 114: {fileID: 11405096}
   m_Layer: 0
   m_Name: Enemy
   m_TagString: Enemy
@@ -164,7 +165,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 179810}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 4.49, y: 0, z: 0}
+  m_LocalPosition: {x: -13.917509, y: -0.065999985, z: 41.331432}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 429952}
@@ -401,6 +402,18 @@ MeshFilter:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 115794}
   m_Mesh: {fileID: 10208, guid: 0000000000000000e000000000000000, type: 0}
+--- !u!114 &11405096
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 179810}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e9a34fa7a4a23524694bd11b6a289648, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  health: 10
 --- !u!114 &11436884
 MonoBehaviour:
   m_ObjectHideFlags: 1
