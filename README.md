@@ -1,3 +1,8 @@
+When making a new branch, make your own scene named the same as your branch name.
+
+DON'T TOUCH THE MAIN SCENE
+==========================
+
 # 2016-s1t2-c41b-HackNSlash
 Unity Assignment given out by Hugo.S and Matt.P, Creating a game catered to our persona.
 
