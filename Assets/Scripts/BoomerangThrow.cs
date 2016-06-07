@@ -11,7 +11,7 @@ public class BoomerangThrow : MonoBehaviour
 
     #endregion
     #region Private Variables
-    private int currentLevel = 0;
+
     public int numOfBoomerangs = 3;//the number of boomerangs the plater has
     private GameObject target;
 
