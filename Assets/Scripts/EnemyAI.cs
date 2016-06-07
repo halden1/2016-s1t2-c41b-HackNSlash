@@ -32,8 +32,7 @@ public class EnemyAI : MonoBehaviour {
         {
             WithInAttackRange();
         }
-       
-       else if (playerDistance < NoticeRange && isAttacking == false)
+        else if (playerDistance < NoticeRange && isAttacking == false)
         {
             WithinNoticeRange();
         }
@@ -41,9 +40,16 @@ public class EnemyAI : MonoBehaviour {
         {
             OutSideAttackRange();
         }
+
         if (isAttacking == true)
         {
-            myAgent.SetDestination(target.transform.position);
+            Vector3 targetPos = target.transform.position;
+            Vector3 dir = transform.position - target.transform.position;
+            dir.y = 0;
+            dir.Normalize();
+            dir *= 2;
+            targetPos += dir;
+            myAgent.SetDestination(targetPos);
         }
         
     }
@@ -60,7 +66,6 @@ public class EnemyAI : MonoBehaviour {
         rangeIndicator.SetActive(false);
         attackIndicator.SetActive(true);
         isAttacking = true;
-        myAgent.SetDestination(target.transform.position);
         
     }
     public void OutSideAttackRange()
