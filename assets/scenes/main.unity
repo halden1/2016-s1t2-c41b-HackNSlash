@@ -1323,27 +1323,6 @@ MonoBehaviour:
         m_CallState: 2
     m_TypeName: UnityEngine.UI.Button+ButtonClickedEvent, UnityEngine.UI, Version=1.0.0.0,
       Culture=neutral, PublicKeyToken=null
---- !u!1 &418238084 stripped
-GameObject:
-  m_PrefabParentObject: {fileID: 121672, guid: 1583a8adf6e125249a0b34561d7ce1ab, type: 2}
-  m_PrefabInternal: {fileID: 1626483173}
---- !u!114 &418238085
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 418238084}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 363e40830dadba44a9574fd6d8160d54, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  boomerangTag: 
-  movingBoomerangPrefab: {fileID: 193026, guid: c1a73a0bf82878f4cb092104a44d263f,
-    type: 2}
-  range: 20
-  projectileSpeed: 5
-  projectileDamage: 5
 --- !u!1 &479726861
 GameObject:
   m_ObjectHideFlags: 0
@@ -2851,6 +2830,7 @@ Canvas:
   m_ReceivesEvents: 1
   m_OverrideSorting: 0
   m_OverridePixelPerfect: 0
+  m_SortingBucketNormalizedSize: 0
   m_SortingLayerID: 0
   m_SortingOrder: 0
   m_TargetDisplay: 0
@@ -3343,26 +3323,6 @@ Prefab:
     - target: {fileID: 401696, guid: 1583a8adf6e125249a0b34561d7ce1ab, type: 2}
       propertyPath: m_RootOrder
       value: 9
-      objectReference: {fileID: 0}
-    - target: {fileID: 5407984, guid: 1583a8adf6e125249a0b34561d7ce1ab, type: 2}
-      propertyPath: m_UseGravity
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 121672, guid: 1583a8adf6e125249a0b34561d7ce1ab, type: 2}
-      propertyPath: m_TagString
-      value: Player
-      objectReference: {fileID: 0}
-    - target: {fileID: 464596, guid: 1583a8adf6e125249a0b34561d7ce1ab, type: 2}
-      propertyPath: m_LocalPosition.z
-      value: 10
-      objectReference: {fileID: 0}
-    - target: {fileID: 464596, guid: 1583a8adf6e125249a0b34561d7ce1ab, type: 2}
-      propertyPath: m_LocalPosition.y
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 5407984, guid: 1583a8adf6e125249a0b34561d7ce1ab, type: 2}
-      propertyPath: m_Constraints
-      value: 80
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 1583a8adf6e125249a0b34561d7ce1ab, type: 2}
