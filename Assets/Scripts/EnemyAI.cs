@@ -1,5 +1,6 @@
 ﻿using UnityEngine;
 using System.Collections;
+using UnityEngine.UI;
 
 public class EnemyAI : MonoBehaviour {
     [SerializeField]
@@ -15,6 +16,11 @@ public class EnemyAI : MonoBehaviour {
     public float NoticeRange;
     public float maxRange;
 
+    //healthbar stuff
+    public Slider healthBar;
+    public Slider healthbarPrefab;
+    public EnemyStats healthStat;
+    public Transform canvasTransform;
 
     // Use this for initialization
     void Start () {
@@ -23,10 +29,16 @@ public class EnemyAI : MonoBehaviour {
         target = GameObject.FindGameObjectWithTag("Player").GetComponent<Transform>();
         myAgent = GetComponent<NavMeshAgent>();
 
+
+        //store health
+        healthStat = this.gameObject.GetComponent<EnemyStats>();
+        CreateHealthBar();///move this later
+
     }
 	
 	// Update is called once per frame
 	void Update () {
+        healthBar.value = healthStat.Health;
         playerDistance = Vector3.Distance(transform.position, target.position); //Get distance to current target.
         if (playerDistance < attackrange)
         {
@@ -51,7 +63,10 @@ public class EnemyAI : MonoBehaviour {
             targetPos += dir;
             myAgent.SetDestination(targetPos);
         }
-        
+
+
+        //update healthbar
+        updateHealthbar(healthBar);
     }
 
 
@@ -59,7 +74,7 @@ public class EnemyAI : MonoBehaviour {
     {
         transform.LookAt(target);
         rangeIndicator.SetActive(true);
-        
+       
     }
     public void WithInAttackRange()
     {
@@ -75,5 +90,30 @@ public class EnemyAI : MonoBehaviour {
         isAttacking = false;
         myAgent.SetDestination(home.transform.position);
        
+    }
+
+
+
+
+
+
+
+
+    public void CreateHealthBar()
+    {
+        healthBar = Instantiate(healthbarPrefab) as Slider;
+        healthBar.transform.Rotate(0, 0, 0, 0);
+        healthBar.transform.SetParent(canvasTransform);
+        healthBar.GetComponent<HealthBarTargetTracker>().Setup(this.gameObject);
+        healthBar.maxValue = healthStat.Health;
+    }
+
+
+    public void updateHealthbar(Slider healthbar)
+    {
+        if(healthBar != null)
+        {
+            healthBar.value = healthStat.Health;
+        }
     }
 }
