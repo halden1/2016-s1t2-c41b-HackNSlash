@@ -1,5 +1,6 @@
 ﻿using UnityEngine;
 using System.Collections;
+using UnityEngine.UI;
 
 public class PlayerStats : MonoBehaviour
 {
@@ -14,7 +15,9 @@ public class PlayerStats : MonoBehaviour
 
     private int level = 0;
     private int exp = 0;
+	[SerializeField]
     private int health = 100;
+	[SerializeField]
     private int maxHealth = 100;
     private int attack = 10;
     private int defence = 10;
@@ -24,7 +27,14 @@ public class PlayerStats : MonoBehaviour
     private int rangedAttackDamage = 5;
     private int rangedAttackAmmo = 3;
     private float rangedAttackSpeed = 5;
-
+	public Slider Shealth;
+	public Slider EXP;
+	public Text Tlevel;
+	public Text Texp;
+	public Text Tattack;
+	public Text Tdefence;
+	public Text Tspeed;
+	public Text Thealth;
 
 
     #endregion
@@ -38,6 +48,16 @@ public class PlayerStats : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+		Shealth.value = health;
+		Shealth.maxValue = maxHealth;
+	//	EXP.maxValue = MAX EXP
+		EXP.value = exp;
+		Tlevel.text = "Level: " + level.ToString();
+		Texp.text = "Exp: " + exp.ToString();
+		Tattack.text = "Attack: " + attack.ToString();
+		Tdefence.text = "Defense: " + defence.ToString();
+		Tspeed.text = "Speed: " + speed.ToString();
+		Thealth.text = "Health: " + health.ToString();
 
     }
     //adder funtions
