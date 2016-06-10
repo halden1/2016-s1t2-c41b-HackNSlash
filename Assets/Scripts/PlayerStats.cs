@@ -5,17 +5,18 @@ public class PlayerStats : MonoBehaviour
 {
 
     #region Public Variables
-
-
-
+    
     #endregion
 
     #region Private Variables
 
-    private int level = 0;
-    private int exp = 0;
-    private int health = 100;
-    private int maxHealth = 100;
+    public int level = 0;
+    public int exp = 0;
+    public int maxExp = 10;
+
+    public int health = 100;
+    public int maxHealth = 100;
+
     private int attack = 10;
     private int defence = 10;
     private float speed = 10;
@@ -38,13 +39,15 @@ public class PlayerStats : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-
+        if (health < 0) { Destroy(this.gameObject); }
+        if (health > maxHealth) { health = maxHealth; }
     }
     //adder funtions
     public void addLevel(int tmpLevel) { level += tmpLevel; }
-    public void addExp(int tmpExp) { exp += tmpExp; }
-    public void addHealth(int tmp) { health += tmp; if (health > maxHealth) { health = maxHealth; } }
-    public void addMaxHealth(int tmp) { health += tmp; }
+    public void addExp(int tmpExp) { exp = exp + tmpExp;  }
+    public void addMaxExp(int tmpMaxExp) { maxExp += tmpMaxExp; }
+    public void addHealth(int tmpHealth) { health += tmpHealth; if (health > maxHealth) { health = maxHealth; } }
+    public void addMaxHealth(int tmpMaxHealth) { maxHealth += tmpMaxHealth; health = maxHealth; }
     public void addAttack(int tmpAttack) { attack += tmpAttack; }
     public void addDefence(int tmpDefence) { defence += tmpDefence; }
     public void addSpeed(float tmpSpeed) { speed += tmpSpeed; }
@@ -58,6 +61,7 @@ public class PlayerStats : MonoBehaviour
     //getters
     public int getLevel() { return level; }
     public int getExp() { return exp; }
+    public int getMaxExp() { return maxExp; }
     public int getHealth() { return health; }
     public int getMaxHealth() { return maxHealth; }
     public int getAttack() { return attack; }
@@ -68,4 +72,8 @@ public class PlayerStats : MonoBehaviour
     public int getRangedAttackDamage() { return rangedAttackDamage; }
     public int getRangedAttackAmmo() { return rangedAttackAmmo; }
     public float getRangedAttackSpeed() { return rangedAttackSpeed; }
+
+
+
+    public void takingDamage(int damage) { health -= damage; }
 }
