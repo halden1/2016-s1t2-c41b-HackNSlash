@@ -1,5 +1,6 @@
 ﻿using UnityEngine;
 using System.Collections;
+using UnityEngine.UI;
 
 public class EnemyAI : MonoBehaviour {
     [SerializeField]
@@ -15,6 +16,14 @@ public class EnemyAI : MonoBehaviour {
     public float NoticeRange;
     public float maxRange;
 
+    //healthbar stuff
+    public Slider healthBar;
+    public Slider healthbarPrefab;
+    public EnemyStats healthStat;
+    public Transform canvasTransform;
+
+    //exp tp player on death
+    private int expOnDeath = 10;
 
     // Use this for initialization
     void Start () {
@@ -23,17 +32,22 @@ public class EnemyAI : MonoBehaviour {
         target = GameObject.FindGameObjectWithTag("Player").GetComponent<Transform>();
         myAgent = GetComponent<NavMeshAgent>();
 
+
+        //store health
+        healthStat = this.gameObject.GetComponent<EnemyStats>();
+        CreateHealthBar();///move this later
+
     }
 	
 	// Update is called once per frame
 	void Update () {
+        healthBar.value = healthStat.Health;
         playerDistance = Vector3.Distance(transform.position, target.position); //Get distance to current target.
         if (playerDistance < attackrange)
         {
             WithInAttackRange();
         }
-       
-       else if (playerDistance < NoticeRange && isAttacking == false)
+        else if (playerDistance < NoticeRange && isAttacking == false)
         {
             WithinNoticeRange();
         }
@@ -41,11 +55,21 @@ public class EnemyAI : MonoBehaviour {
         {
             OutSideAttackRange();
         }
+
         if (isAttacking == true)
         {
-            myAgent.SetDestination(target.transform.position);
+            Vector3 targetPos = target.transform.position;
+            Vector3 dir = transform.position - target.transform.position;
+            dir.y = 0;
+            dir.Normalize();
+            dir *= 2;
+            targetPos += dir;
+            myAgent.SetDestination(targetPos);
         }
-        
+
+
+        //update healthbar
+        updateHealthbar(healthBar);
     }
 
 
@@ -53,14 +77,13 @@ public class EnemyAI : MonoBehaviour {
     {
         transform.LookAt(target);
         rangeIndicator.SetActive(true);
-        
+       
     }
     public void WithInAttackRange()
     {
         rangeIndicator.SetActive(false);
         attackIndicator.SetActive(true);
         isAttacking = true;
-        myAgent.SetDestination(target.transform.position);
         
     }
     public void OutSideAttackRange()
@@ -70,5 +93,35 @@ public class EnemyAI : MonoBehaviour {
         isAttacking = false;
         myAgent.SetDestination(home.transform.position);
        
+    }
+
+
+
+
+
+
+
+
+    public void CreateHealthBar()
+    {
+        healthBar = Instantiate(healthbarPrefab) as Slider;
+        healthBar.transform.Rotate(0, 0, 0, 0);
+        healthBar.transform.SetParent(canvasTransform);
+        healthBar.GetComponent<HealthBarTargetTracker>().Setup(this.gameObject);
+        healthBar.maxValue = healthStat.Health;
+    }
+
+
+    public void updateHealthbar(Slider healthbar)
+    {
+        if(healthBar != null)
+        {
+            healthBar.value = healthStat.Health;
+        }
+    }
+
+    void OnDestroy()
+    {
+        GameObject.FindGameObjectWithTag("Player").GetComponent<LevelUp>().expUp(expOnDeath);
     }
 }

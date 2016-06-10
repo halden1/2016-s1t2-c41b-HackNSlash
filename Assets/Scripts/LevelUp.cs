@@ -7,7 +7,7 @@ public class LevelUp : MonoBehaviour
     #region Public Variables
     public string playerStatsTag = "Player"; // the tag of the object that hold the player stats scripts
 
-    public int healthPerLevel = 0;
+    public int healthPerLevel =10;
     public int attackPerLevel = 1;
     public int defencePerLevel = 0;
     public float speedPerLevel = 0;
@@ -24,15 +24,17 @@ public class LevelUp : MonoBehaviour
 
     private int currentLevel = 0;
     private int currentExp = 0;
-    private int expToLevelUp = 10;
-
+    private int expToLevelUp = 1;
+    private static int tmp;
     #endregion
+
     void Start()
     {
         //get exp and level from player stats 
         playerStats = FindObjectOfType<PlayerStats>();
         currentLevel = playerStats.getLevel();
         currentExp = playerStats.getExp();
+        expToLevelUp = playerStats.getMaxExp();
     }
 
     // Update is called once per frame
@@ -40,9 +42,14 @@ public class LevelUp : MonoBehaviour
     {
         if (currentExp >= expToLevelUp)
         {
-            expToLevelUp += expToLevelUp;//exp to level up doubles each level
+            
+            playerStats.addMaxExp(10);
+            expToLevelUp = playerStats.getMaxExp();
+
             playerStats.addLevel(1);//save these to the player stat class
-            playerStats.addMaxHealth(healthPerLevel);
+
+            playerStats.addMaxHealth(10);
+            tmp = playerStats.getMaxHealth();
             playerStats.addAttack(attackPerLevel);
             playerStats.addDefence(defencePerLevel);
             playerStats.addSpeed(speedPerLevel);
@@ -52,8 +59,16 @@ public class LevelUp : MonoBehaviour
             playerStats.addRangedAttackAmmo(rangedAttackAmmoPerLevel);
             playerStats.addRangedAttackSpeed(rangedAttackSpeedPerLevel);
 
-            playerStats.addExp(currentExp - playerStats.getExp());
+            playerStats.addExp(playerStats.getExp() * -1);
+            currentExp = 0;
         }
     }
     public void forceLevelup() { currentExp = expToLevelUp; }
+
+
+    public void expUp(int exp)
+    {
+        currentExp += exp;
+        playerStats.addExp(exp);
+    }
 }

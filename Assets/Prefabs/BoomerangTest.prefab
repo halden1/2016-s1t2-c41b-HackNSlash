@@ -15,7 +15,7 @@ GameObject:
   - 114: {fileID: 11451486}
   m_Layer: 5
   m_Name: BoomerangTest
-  m_TagString: Untagged
+  m_TagString: Return
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -93,7 +93,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   enemyTag: Enemy
   playerTag: Player
+  reachedTarget: 0
+  target: {x: 0, y: 0, z: 0}
   player: {fileID: 0}
+  damage: 5
+  speed: 5
 --- !u!135 &13576578
 SphereCollider:
   m_ObjectHideFlags: 1
@@ -128,6 +132,10 @@ Prefab:
     - target: {fileID: 0}
       propertyPath: playerTag
       value: Player
+      objectReference: {fileID: 0}
+    - target: {fileID: 0}
+      propertyPath: m_TagString
+      value: Return
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 0}
