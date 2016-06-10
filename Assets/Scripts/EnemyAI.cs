@@ -22,6 +22,9 @@ public class EnemyAI : MonoBehaviour {
     public EnemyStats healthStat;
     public Transform canvasTransform;
 
+    //exp tp player on death
+    private int expOnDeath = 10;
+
     // Use this for initialization
     void Start () {
         rangeIndicator.SetActive(false);
@@ -115,5 +118,10 @@ public class EnemyAI : MonoBehaviour {
         {
             healthBar.value = healthStat.Health;
         }
+    }
+
+    void OnDestroy()
+    {
+        GameObject.FindGameObjectWithTag("Player").GetComponent<LevelUp>().expUp(expOnDeath);
     }
 }
