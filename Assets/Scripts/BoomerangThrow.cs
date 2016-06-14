@@ -5,6 +5,8 @@ public class BoomerangThrow : MonoBehaviour
 {
     #region Public Variables
     public GameObject movingBoomerangPrefab = null;
+	public GameObject target;
+	public float offset = 20;
     public float range = 20f;
     public float projectileSpeed = 5;
     public float projectileDamage = 5;
@@ -13,7 +15,6 @@ public class BoomerangThrow : MonoBehaviour
     #region Private Variables
 
     public int numOfBoomerangs = 3;//the number of boomerangs the plater has
-    private GameObject target;
 
     private PlayerStats playerStats;
 
@@ -36,6 +37,7 @@ public class BoomerangThrow : MonoBehaviour
     void Update()
     {
         input();
+		target.transform.position = this.transform.position + this.transform.forward * offset;
     }
 
 

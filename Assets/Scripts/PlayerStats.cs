@@ -11,16 +11,16 @@ public class PlayerStats : MonoBehaviour
 
     #region Private Variables
 
-    private int level = 0;
+	public int level = 0;
     private int exp = 0;
 	[SerializeField]
     private int health = 100;
 	[SerializeField]
-    private int maxHealth = 100;
+    public int maxHealth = 100;
     public int maxExp = 10;
 
 
-    private int attack = 10;
+	public int attack = 10;
     private int defence = 10;
     private float speed = 10;
 
