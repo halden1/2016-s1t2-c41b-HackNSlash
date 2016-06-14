@@ -11,22 +11,15 @@ public class PlayerStats : MonoBehaviour
 
     #region Private Variables
 
-<<<<<<< HEAD
     private int level = 0;
     private int exp = 0;
 	[SerializeField]
     private int health = 100;
 	[SerializeField]
     private int maxHealth = 100;
-=======
-    public int level = 0;
-    public int exp = 0;
     public int maxExp = 10;
 
-    public int health = 100;
-    public int maxHealth = 100;
 
->>>>>>> refs/remotes/origin/master
     private int attack = 10;
     private int defence = 10;
     private float speed = 10;
@@ -56,7 +49,7 @@ public class PlayerStats : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-<<<<<<< HEAD
+		
 		Shealth.value = health;
 		Shealth.maxValue = maxHealth;
 	//	EXP.maxValue = MAX EXP
@@ -68,10 +61,10 @@ public class PlayerStats : MonoBehaviour
 		Tspeed.text = "Speed: " + speed.ToString();
 		Thealth.text = "Health: " + health.ToString();
 
-=======
+
         if (health < 0) { Destroy(this.gameObject); }
         if (health > maxHealth) { health = maxHealth; }
->>>>>>> refs/remotes/origin/master
+
     }
     //adder funtions
     public void addLevel(int tmpLevel) { level += tmpLevel; }
